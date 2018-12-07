@@ -11,11 +11,11 @@ default: &default
   timeout: 5000
   host: localhost
   username: pineal
-  database: pineal_development
-  password: pineal123
+  password: <%= ENV["PINEAL_DATABASE_PASSWORD"] %>
 
 development:
   <<: *default
+  database: pineal_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
