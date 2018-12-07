@@ -10,13 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_010954) do
-
-  create_table "asdfs", force: :cascade do |t|
-    t.integer "hola"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 2018_12_07_011504) do
 
   create_table "records", force: :cascade do |t|
     t.string "vp"
