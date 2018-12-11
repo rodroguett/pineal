@@ -1,0 +1,27 @@
+es:
+  breadcrumbs:
+    application:
+      root: "Indice"
+    pages:
+      pages: "Páginas"
+  helpers:
+    submit:
+      create: "Crear"
+      submit: "Guardar"
+      update: "Actualizar"
+    created_at: "Fecha de creación"
+    actions: "Acciones"
+    links:
+      back: "Volver"
+      cancel: "Cancelar"
+      confirm: "Estás seguro?"
+      destroy: "Eliminar"
+      new: "Nuevo"
+      edit: "Editar"
+      show: "Ver"
+    titles:
+      create: "Crear"
+      edit: "Editar"
+      save: "Guardar"
+      new: "Nuevo"
+      delete: "Eliminar"
