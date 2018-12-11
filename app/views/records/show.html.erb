@@ -1,13 +1,41 @@
 <%- model_class = Record -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1>Concurso</h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:vp) %>:</strong></dt>
+  <dt><strong>VP:</strong></dt>
   <dd><%= @record.vp %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:rol) %>:</strong></dt>
+  <dt><strong>Gerencia:</strong></dt>
+  <dd><%= @record.gerencia %></dd>
+  <dt><strong>SI:</strong></dt>
+  <dd><%= @record.si %></dd>
+  <dt><strong>Cargo:</strong></dt>
+  <dd><%= @record.cargo %></dd>
+  <dt><strong>Rol:</strong></dt>
   <dd><%= @record.rol %></dd>
+  <dt><strong>N° Vacantes:</strong></dt>
+  <dd><%= @record.nvacantes %></dd>
+  <dt><strong>APTO:</strong></dt>
+  <dd><%= @record.apto %></dd>
+  <dt><strong>NO APTO:</strong></dt>
+  <dd><%= @record.noapto %></dd>
+  <dt><strong>EN COORDINACIÓN:</strong></dt>
+  <dd><%= @record.encoordinacion %></dd>
+  <dt><strong>N° Postulantes:</strong></dt>
+  <dd><%= @record.npostulantes %></dd>
+  <dt><strong>Días Concurso:</strong></dt>
+  <dd><%= @record.diasconcurso %></dd>
+  <dt><strong>Fecha Apertura:</strong></dt>
+  <dd><%= @record.fechaapertura %></dd>
+  <dt><strong>Fecha Aprobación CEO:</strong></dt>
+  <dd><%= @record.fechaaprobacionceo %></dd>
+  <dt><strong>Fecha Ingreso:</strong></dt>
+  <dd><%= @record.fechaingreso %></dd>
+  <dt><strong>Status:</strong></dt>
+  <dd><%= @record.status %></dd>
+  <dt><strong>Comentario:</strong></dt>
+  <dd><%= @record.comentario %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
