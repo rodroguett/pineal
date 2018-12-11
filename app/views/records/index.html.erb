@@ -14,8 +14,22 @@
   <thead>
     <tr>
       <th>VP</th>
+      <th>Gerencia</th>
+      <th>SI</th>
+      <th>Cargo</th>
       <th>Rol</th>
-      <th>Fecha de creación</th>
+      <th>N° Vacantes</th>
+      <th>APTO</th>
+      <th>NO APTO</th>
+      <th>EN COORDINACIÓN</th>
+      <th>N° Postulantes</th>
+      <th>Días Concurso</th>
+      <th>Fecha Apertura</th>
+      <th>Fecha Aprobación CEO</th>
+      <th>Fecha Ingreso</th>
+      <th>Status</th>
+      <th>Comentario</th>
+      <th>Fecha creación</th>
       <% if current_user.email == "admin@pineal.cl" %>
         <th><%=t '.actions', :default => t("helpers.actions") %></th>
       <% end %>
@@ -25,7 +39,21 @@
     <% @records.each do |record| %>
       <tr>
         <td><%= record.vp %></td>
+        <td><%= record.gerencia %></td>
+        <td><%= record.si %></td>
+        <td><%= record.cargo %></td>
         <td><%= record.rol %></td>
+        <td><%= record.nvacantes %></td>
+        <td><%= record.apto %></td>
+        <td><%= record.noapto %></td>
+        <td><%= record.encoordinacion %></td>
+        <td><%= record.npostulantes %></td>
+        <td><%= record.diasconcurso %></td>
+        <td><%= record.fechaapertura %></td>
+        <td><%= record.fechaaprobacionceo %></td>
+        <td><%= record.fechaingreso %></td>
+        <td><%= record.status %></td>
+        <td><%= record.comentario %></td>
         <td><%= record.created_at.strftime("%d/%m/%Y") %></td>
         <% if current_user.email == "admin@pineal.cl" %>
           <td>

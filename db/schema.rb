@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_07_011504) do
+ActiveRecord::Schema.define(version: 2018_12_11_042242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,22 @@ ActiveRecord::Schema.define(version: 2018_12_07_011504) do
     t.string "rol"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "gerencia"
+    t.string "si"
+    t.string "cargo"
+    t.integer "nvacantes"
+    t.integer "apto"
+    t.integer "noapto"
+    t.string "encoordinacion"
+    t.string "integer"
+    t.integer "npostulantes"
+    t.integer "diasconcurso"
+    t.string "fechaapertura"
+    t.string "fechaaprobacion"
+    t.string "fechaaprobacionceo"
+    t.string "fechaingreso"
+    t.string "status"
+    t.string "comentario"
   end
 
   create_table "users", force: :cascade do |t|
