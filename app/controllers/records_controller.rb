@@ -5,7 +5,13 @@ class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
   def index
-    @records = Record.all
+    @filter = params[:filter]
+    @records = if @filter
+      Record.where('rol IN (?)', params[:filter])
+    else
+      Record.all
+    end
+    @roles = Record.pluck(:rol).uniq
   end
 
   # GET /records/1
@@ -70,6 +76,6 @@ class RecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def record_params
-      params.require(:record).permit(:vp, :gerencia, :si, :cargo, :rol, :nvacantes, :apto, :noapto, :encoordinacion, :npostulantes, :diasconcurso, :fechaapertura, :fechaaprobacionceo, :fechaingreso, :status, :comentario)
+      params.require(:record).permit(:vp, :gerencia, :si, :cargo, :rol, :nvacantes, :apto, :noapto, :encoordinacion, :npostulantes, :diasconcurso, :fechaapertura, :fechaaprobacionceo, :fechaingreso, :status, :comentario, :filter)
     end
 end

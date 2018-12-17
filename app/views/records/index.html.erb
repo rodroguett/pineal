@@ -1,6 +1,6 @@
 <%- model_class = Record -%>
 
-  <%= bar_chart records_data_path %>
+<%= bar_chart records_data_path(filter: @filter), hAxis: { format:'scientific'} %>
 
 <% if current_user.email == "admin@pineal.cl" %>
   <p>
@@ -10,67 +10,75 @@
   </p>
 <% end %>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>VP</th>
-      <th>Gerencia</th>
-      <th>SI</th>
-      <th>Cargo</th>
-      <th>Rol</th>
-      <th>N° Vacantes</th>
-      <th>APTO</th>
-      <th>NO APTO</th>
-      <th>EN COORDINACIÓN</th>
-      <th>N° Postulantes</th>
-      <th>Días Concurso</th>
-      <th>Fecha Apertura</th>
-      <th>Fecha Aprobación CEO</th>
-      <th>Fecha Ingreso</th>
-      <th>Status</th>
-      <th>Comentario</th>
-      <th>Fecha creación</th>
-      <% if current_user.email == "admin@pineal.cl" %>
-        <th><%=t '.actions', :default => t("helpers.actions") %></th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% @records.each do |record| %>
+<%= form_tag(records_path, method: :get) do %>
+  <% @roles.each do |rol| %>
+    <% checked = @filter.include? rol if @filter.present? %>
+    <%= check_box_tag 'filter[]', rol, checked %> <%= rol %></br>
+  <% end %>
+  <%= submit_tag 'Filtrar', name: nil %>
+<% end %>
+
+
+  <table>
+    <thead>
       <tr>
-        <td><%= record.vp %></td>
-        <td><%= record.gerencia %></td>
-        <td><%= record.si %></td>
-        <td><%= record.cargo %></td>
-        <td><%= record.rol %></td>
-        <td><%= record.nvacantes %></td>
-        <td><%= record.apto %></td>
-        <td><%= record.noapto %></td>
-        <td><%= record.encoordinacion %></td>
-        <td><%= record.npostulantes %></td>
-        <td><%= record.diasconcurso %></td>
-        <td><%= record.fechaapertura %></td>
-        <td><%= record.fechaaprobacionceo %></td>
-        <td><%= record.fechaingreso %></td>
-        <td><%= record.status %></td>
-        <td><%= record.comentario %></td>
-        <td><%= record.created_at.strftime("%d/%m/%Y") %></td>
+        <th>VP</th>
+        <th>Gerencia</th>
+        <th>SI</th>
+        <th>Cargo</th>
+        <th>Rol</th>
+        <th>N° Vacantes</th>
+        <th>APTO</th>
+        <th>NO APTO</th>
+        <th>EN COORDINACIÓN</th>
+        <th>N° Postulantes</th>
+        <th>Días Concurso</th>
+        <th>Fecha Apertura</th>
+        <th>Fecha Aprobación CEO</th>
+        <th>Fecha Ingreso</th>
+        <th>Status</th>
+        <th>Comentario</th>
+        <th>Fecha creación</th>
         <% if current_user.email == "admin@pineal.cl" %>
-          <td>
-            <%= link_to t('.show', :default => t("helpers.links.show")),
-                        record_path(record), :class => 'btn btn-default btn-xs' %>
-            <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                        edit_record_path(record), :class => 'btn btn-default btn-xs' %>
-            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                        record_path(record),
-                        :method => :delete,
-                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                        :class => 'btn btn-xs btn-danger' %>
-          </td>
+          <th><%=t '.actions', :default => t("helpers.actions") %></th>
         <% end %>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
+    </thead>
+    <tbody>
+      <% @records.each do |record| %>
+        <tr>
+          <td><%= record.vp %></td>
+          <td><%= record.gerencia %></td>
+          <td><%= record.si %></td>
+          <td><%= record.cargo %></td>
+          <td><%= record.rol %></td>
+          <td><%= record.nvacantes %></td>
+          <td><%= record.apto %></td>
+          <td><%= record.noapto %></td>
+          <td><%= record.encoordinacion %></td>
+          <td><%= record.npostulantes %></td>
+          <td><%= record.diasconcurso %></td>
+          <td><%= record.fechaapertura %></td>
+          <td><%= record.fechaaprobacionceo %></td>
+          <td><%= record.fechaingreso %></td>
+          <td><%= record.status %></td>
+          <td><%= record.comentario %></td>
+          <td><%= record.created_at.strftime("%d/%m/%Y") %></td>
+          <% if current_user.email == "admin@pineal.cl" %>
+            <td>
+              <%= link_to t('.show', :default => t("helpers.links.show")),
+                          record_path(record), :class => 'btn btn-default btn-xs' %>
+              <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                          edit_record_path(record), :class => 'btn btn-default btn-xs' %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                          record_path(record),
+                          :method => :delete,
+                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                          :class => 'btn btn-xs btn-danger' %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 

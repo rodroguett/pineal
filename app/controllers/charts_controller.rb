@@ -1,8 +1,13 @@
 class ChartsController < ApplicationController
 
   def records_data
+    filter = params[:filter]
+    roles = if filter
+      Record.where('rol IN (?)', params[:filter]).pluck(:rol).uniq
+    else
+      Record.pluck(:rol).uniq
+    end
     vps = Record.pluck(:vp).uniq
-    roles = Record.pluck(:rol).uniq
     everything = []
     records = {}
 
