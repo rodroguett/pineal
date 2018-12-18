@@ -1,6 +1,7 @@
 <%- model_class = Record -%>
-
-<%= bar_chart records_data_path(filter: @filter), hAxis: { format:'scientific'} %>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<%= bar_chart records_data_path(filter: @filter), library: {hAxis: {format: '0'}} %>
 
 <% if current_user.email == "admin@pineal.cl" %>
   <p>
@@ -11,34 +12,36 @@
 <% end %>
 
 <%= form_tag(records_path, method: :get) do %>
-  <% @roles.each do |rol| %>
-    <% checked = @filter.include? rol if @filter.present? %>
-    <%= check_box_tag 'filter[]', rol, checked %> <%= rol %></br>
+  <% @statuses.each do |status| %>
+    <% if status.present? %>
+      <% checked = @filter.include? status if @filter.present? %>
+      <%= check_box_tag 'filter[]', status, checked %> <%= status %></br>
+    <% end %>
   <% end %>
   <%= submit_tag 'Filtrar', name: nil %>
 <% end %>
 
 
-  <table>
+  <table class="table table-condensed" >
     <thead>
       <tr>
-        <th>VP</th>
-        <th>Gerencia</th>
-        <th>SI</th>
-        <th>Cargo</th>
-        <th>Rol</th>
-        <th>N° Vacantes</th>
-        <th>APTO</th>
-        <th>NO APTO</th>
-        <th>EN COORDINACIÓN</th>
-        <th>N° Postulantes</th>
-        <th>Días Concurso</th>
-        <th>Fecha Apertura</th>
-        <th>Fecha Aprobación CEO</th>
-        <th>Fecha Ingreso</th>
-        <th>Status</th>
-        <th>Comentario</th>
-        <th>Fecha creación</th>
+        <th class="text-center">VP</th>
+        <th class="text-center">Gerencia</th>
+        <th class="text-center">SI</th>
+        <th class="text-center">Cargo</th>
+        <th class="text-center">Rol</th>
+        <th class="text-center">N° Vacantes</th>
+        <th class="text-center">APTO</th>
+        <th class="text-center">NO APTO</th>
+        <th class="text-center">EN COORDINACIÓN</th>
+        <th class="text-center">N° Postulantes</th>
+        <th class="text-center">Días Concurso</th>
+        <th class="text-center">Fecha Apertura</th>
+        <th class="text-center">Fecha Aprobación CEO</th>
+        <th class="text-center">Fecha Ingreso</th>
+        <th class="text-center">Status</th>
+        <th class="text-center">Comentario</th>
+        <th class="text-center">Fecha creación</th>
         <% if current_user.email == "admin@pineal.cl" %>
           <th><%=t '.actions', :default => t("helpers.actions") %></th>
         <% end %>
@@ -47,25 +50,25 @@
     <tbody>
       <% @records.each do |record| %>
         <tr>
-          <td><%= record.vp %></td>
-          <td><%= record.gerencia %></td>
-          <td><%= record.si %></td>
-          <td><%= record.cargo %></td>
-          <td><%= record.rol %></td>
-          <td><%= record.nvacantes %></td>
-          <td><%= record.apto %></td>
-          <td><%= record.noapto %></td>
-          <td><%= record.encoordinacion %></td>
-          <td><%= record.npostulantes %></td>
-          <td><%= record.diasconcurso %></td>
-          <td><%= record.fechaapertura %></td>
-          <td><%= record.fechaaprobacionceo %></td>
-          <td><%= record.fechaingreso %></td>
-          <td><%= record.status %></td>
-          <td><%= record.comentario %></td>
-          <td><%= record.created_at.strftime("%d/%m/%Y") %></td>
+          <td class="text-center"><%= record.vp %></td>
+          <td class="text-center"><%= record.gerencia %></td>
+          <td class="text-center"><%= record.si %></td>
+          <td class="text-center"><%= record.cargo %></td>
+          <td class="text-center"><%= record.rol %></td>
+          <td class="text-center"><%= record.nvacantes %></td>
+          <td class="text-center"><%= record.apto %></td>
+          <td class="text-center"><%= record.noapto %></td>
+          <td class="text-center"><%= record.encoordinacion %></td>
+          <td class="text-center"><%= record.npostulantes %></td>
+          <td class="text-center"><%= record.diasconcurso %></td>
+          <td class="text-center"><%= record.fechaapertura %></td>
+          <td class="text-center"><%= record.fechaaprobacionceo %></td>
+          <td class="text-center"><%= record.fechaingreso %></td>
+          <td class="text-center"><%= record.status %></td>
+          <td class="text-center"><%= record.comentario %></td>
+          <td class="text-center"><%= record.created_at.strftime("%d/%m/%Y") %></td>
           <% if current_user.email == "admin@pineal.cl" %>
-            <td>
+            <td class="text-center">
               <%= link_to t('.show', :default => t("helpers.links.show")),
                           record_path(record), :class => 'btn btn-default btn-xs' %>
               <%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -81,4 +84,3 @@
       <% end %>
     </tbody>
   </table>
-
