@@ -2,17 +2,20 @@ class ChartsController < ApplicationController
 
   def records_data
     filter = params[:filter]
-    roles = if filter
-      Record.where('rol IN (?)', params[:filter]).pluck(:rol).uniq
+
+    filtered_records = if filter
+      Record.where('status IN (?)', filter)
     else
-      Record.pluck(:rol).uniq
+      Record.all
     end
-    vps = Record.pluck(:vp).uniq
+
+    roles = filtered_records.pluck(:rol).uniq
+    vps = filtered_records.pluck(:vp).uniq
     everything = []
     records = {}
 
     vps.each do |vp|
-      records[vp] = Record.where(vp: vp).group(:rol).count
+      records[vp] = filtered_records.where(vp: vp).group(:rol).count
     end
 
     roles.each do |rol|

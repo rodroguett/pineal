@@ -7,11 +7,11 @@ class RecordsController < ApplicationController
   def index
     @filter = params[:filter]
     @records = if @filter
-      Record.where('rol IN (?)', params[:filter])
+      Record.where('status IN (?)', @filter)
     else
       Record.all
     end
-    @roles = Record.pluck(:rol).uniq
+    @statuses = Record.pluck(:status).uniq
   end
 
   # GET /records/1

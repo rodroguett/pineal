@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+.table{
+  font-size: 8px;
+}
+th{
+  text-align: center;
+}
+td{
+  align: center;
+}
