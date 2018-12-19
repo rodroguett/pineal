@@ -7,7 +7,6 @@
   <img src="somos_collahuasi.png" class="rounded float-right" width="200" height="100" alt="somos_collahuasi">
 </div>
 
-
 <%= bar_chart records_data_path(filter: @filter), library: {  title: 'Concursos CMDIC',
                                                               hAxis: {
                                                                 title: 'N° Concursos',
@@ -82,7 +81,7 @@
           <td class="text-center"><%= record.fechaingreso %></td>
           <td class="text-center"><%= record.status %></td>
           <td class="text-center"><%= record.comentario %></td>
-          <td class="text-center"><%= record.created_at.strftime("%d/%m/%Y") %></td>
+          <td class="text-center"><%= record.created_at.strftime("%d-%m") %></td>
           <% if current_user.email == "admin@pineal.cl" %>
             <td class="text-center">
               <%= link_to t('.show', :default => t("helpers.links.show")),
