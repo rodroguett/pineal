@@ -1,7 +1,23 @@
 <%- model_class = Record -%>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-<%= bar_chart records_data_path(filter: @filter), library: {hAxis: {format: '0'}} %>
+
+<div class="wrap">
+  <img src="pineal.png" class="rounded float-left" width="200" height="100" alt="pineal">
+  <img src="somos_collahuasi.png" class="rounded float-right" width="200" height="100" alt="somos_collahuasi">
+</div>
+
+
+<%= bar_chart records_data_path(filter: @filter), library: {  title: 'Concursos CMDIC',
+                                                              hAxis: {
+                                                                title: 'N° Concursos',
+                                                                minValue: 0,
+                                                                format:'0'
+                                                              },
+                                                              vAxis: {
+                                                                title: 'Área'
+                                                              }}
+%>
 
 <% if current_user.email == "admin@pineal.cl" %>
   <p>
@@ -22,7 +38,7 @@
 <% end %>
 
 
-  <table class="table table-condensed" >
+  <table class="table" >
     <thead>
       <tr>
         <th class="text-center">VP</th>

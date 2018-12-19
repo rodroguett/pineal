@@ -17,6 +17,29 @@
 .table{
   font-size: 10px;
 }
+
 th{
-  text-align: center;
+  font-size: 10px;
+}
+
+td{
+  font-size: 10px;
+}
+
+div.wrap {
+  height: 30px;
+  position: relative;
+}
+
+.wrap img {
+  position: absolute;
+  bottom: 0;
+}
+
+.wrap img:nth-of-type(1) {
+    left: 0;
+}
+
+.wrap img:nth-of-type(2) {
+    right: 0;
 }
