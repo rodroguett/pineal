@@ -14,6 +14,16 @@ class RecordsController < ApplicationController
     @statuses = Record.pluck(:status).uniq
   end
 
+  def download
+    @filter = params[:filter]
+    @records = if @filter
+      Record.where('status IN (?)', @filter)
+    else
+      Record.all
+    end
+    render "records/download.xlsx.axlsx"
+  end
+
   # GET /records/1
   # GET /records/1.json
   def show

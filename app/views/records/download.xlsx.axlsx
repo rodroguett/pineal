@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "concursos") do |sheet|
+  sheet.add_row ['VP', 'Gerencia', 'SI', 'Cargo', 'Rol', 'N° Vacantes', 'APTO', 'NO APTO', 'EN COORDINACIÓN', 'N° Postulantes', 'Días Concurso', 'Fecha Apertura', 'Fecha Aprobación CEO', 'Fecha Ingreso', 'Status', 'Comentario']
+  @records.each do |record|
+    sheet.add_row [record.vp, record.gerencia, record.si, record.cargo, record.rol, record.nvacantes, record.apto, record.noapto, record.encoordinacion, record.npostulantes, record.diasconcurso, record.fechaapertura, record.fechaaprobacionceo, record.fechaingreso, record.status, record.comentario]
+  end
+end
