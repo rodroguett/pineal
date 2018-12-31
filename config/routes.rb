@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root :to => 'records#index'
   resources :records
   get 'records_data', to: "charts#records_data", as: "records_data"
+  get 'download', to: "records#download"
 end

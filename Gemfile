@@ -66,3 +66,6 @@ gem 'twitter-bootstrap-rails'
 gem 'chartkick'
 
 gem 'devise'
+
+gem 'axlsx', '2.1.0.pre'
+gem 'axlsx_rails'

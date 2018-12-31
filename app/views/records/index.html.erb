@@ -36,8 +36,9 @@
   <%= submit_tag 'Filtrar', name: nil %>
 <% end %>
 
+<%= link_to '<button type="button" class="btn btn-primary" style="float: right;">Exportar planilla</button>'.html_safe, download_path(format: "xlsx", filter: @filter) %>
 
-  <table class="table" >
+  <table class="table table-bordered" >
     <thead>
       <tr>
         <th class="text-center">VP</th>
