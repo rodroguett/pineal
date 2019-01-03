@@ -71,6 +71,13 @@
             <td class="text-center"><%= Record.where(vp: "VPAF").count %></td>
           </tr>
           <tr>
+            <td class="text-center">RRHH</td>
+            <td class="text-center"><%= Record.where(vp: "RRHH", rol: "EJE").count %></td>
+            <td class="text-center"><%= Record.where(vp: "RRHH", rol: "OAS").count %></td>
+            <td class="text-center"><%= Record.where(vp: "RRHH", rol: "SPS").count %></td>
+            <td class="text-center"><%= Record.where(vp: "RRHH").count %></td>
+          </tr>
+          <tr>
             <th class="text-center">Total Resultado</th>
             <td class="text-center"><%= Record.where(rol: "EJE").count %></td>
             <td class="text-center"><%= Record.where(rol: "OAS").count %></td>
