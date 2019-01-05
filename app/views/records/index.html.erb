@@ -9,85 +9,49 @@
 
 <div class="container">
   <div class="row">
-      <h5 class="text-center">Cantidad - Cargo</h5>
-      <table class="table table-bordered cellspacing="0" cellpadding="0">
-        <thead>
+    <h5 class="text-center">Cantidad - Cargo</h5>
+  </div>
+  <div class="row">
+    <table class="table table-bordered cellspacing="0" cellpadding="0">
+      <thead>
+        <tr>
+          <td class="text-center"></td>
+          <% @filter_roles.each do |fr| %>
+            <td class="text-center"><%= fr %></td>
+          <% end %>
+          <td class="text-center">Total Resultado</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @filter_vps.each do |fv| %>
           <tr>
-            <th class="text-center"></th>
-            <th class="text-center">EJE</th>
-            <th class="text-center">OAS</th>
-            <th class="text-center">SPS</th>
-            <th class="text-center">Total Resultado</th>
+            <td class="text-center"><%= fv %></td>
+            <% @filter_roles.each do |fr| %>
+              <td class="text-center"><%= @table_records.where(vp: "#{fv}", rol: "#{fr}").count %></td>
+            <% end %>
+            <td class="text-center"><%= @table_records.where(vp: "#{fv}").count %></td>
           </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-center">GSO</td>
-            <td class="text-center"><%= Record.where(vp: "GSO", rol: "EJE").count %></td>
-            <td class="text-center"><%= Record.where(vp: "GSO", rol: "OAS").count %></td>
-            <td class="text-center"><%= Record.where(vp: "GSO", rol: "SPS").count %></td>
-            <td class="text-center"><%= Record.where(vp: "GSO").count %></td>
-          </tr>
-          <tr>
-            <td class="text-center">GTAM</td>
-            <td class="text-center"><%= Record.where(vp: "GTAM", rol: "EJE").count %></td>
-            <td class="text-center"><%= Record.where(vp: "GTAM", rol: "OAS").count %></td>
-            <td class="text-center"><%= Record.where(vp: "GTAM", rol: "SPS").count %></td>
-            <td class="text-center"><%= Record.where(vp: "GTAM").count %></td>
-          </tr>
-          <tr>
-            <td class="text-center">VPDS</td>
-            <td class="text-center"><%= Record.where(vp: "VPDS", rol: "EJE").count %></td>
-            <td class="text-center"><%= Record.where(vp: "VPDS", rol: "OAS").count %></td>
-            <td class="text-center"><%= Record.where(vp: "VPDS", rol: "SPS").count %></td>
-            <td class="text-center"><%= Record.where(vp: "VPDS").count %></td>
-          </tr>
-          <tr>
-            <td class="text-center">VPM</td>
-            <td class="text-center"><%= Record.where(vp: "VPM", rol: "EJE").count %></td>
-            <td class="text-center"><%= Record.where(vp: "VPM", rol: "OAS").count %></td>
-            <td class="text-center"><%= Record.where(vp: "VPM", rol: "SPS").count %></td>
-            <td class="text-center"><%= Record.where(vp: "VPM").count %></td>
-          </tr>
-          <tr>
-            <td class="text-center">VPP</td>
-            <td class="text-center"><%= Record.where(vp: "VPP", rol: "EJE").count %></td>
-            <td class="text-center"><%= Record.where(vp: "VPP", rol: "OAS").count %></td>
-            <td class="text-center"><%= Record.where(vp: "VPP", rol: "SPS").count %></td>
-            <td class="text-center"><%= Record.where(vp: "VPP").count %></td>
-          </tr>
-          <tr>
-            <td class="text-center">VP PROY</td>
-            <td class="text-center"><%= Record.where(vp: "VP PROY", rol: "EJE").count %></td>
-            <td class="text-center"><%= Record.where(vp: "VP PROY", rol: "OAS").count %></td>
-            <td class="text-center"><%= Record.where(vp: "VP PROY", rol: "SPS").count %></td>
-            <td class="text-center"><%= Record.where(vp: "VP PROY").count %></td>
-          </tr>
-          <tr>
-            <td class="text-center">VPAF</td>
-            <td class="text-center"><%= Record.where(vp: "VPAF", rol: "EJE").count %></td>
-            <td class="text-center"><%= Record.where(vp: "VPAF", rol: "OAS").count %></td>
-            <td class="text-center"><%= Record.where(vp: "VPAF", rol: "SPS").count %></td>
-            <td class="text-center"><%= Record.where(vp: "VPAF").count %></td>
-          </tr>
-          <tr>
-            <td class="text-center">RRHH</td>
-            <td class="text-center"><%= Record.where(vp: "RRHH", rol: "EJE").count %></td>
-            <td class="text-center"><%= Record.where(vp: "RRHH", rol: "OAS").count %></td>
-            <td class="text-center"><%= Record.where(vp: "RRHH", rol: "SPS").count %></td>
-            <td class="text-center"><%= Record.where(vp: "RRHH").count %></td>
-          </tr>
-          <tr>
-            <th class="text-center">Total Resultado</th>
-            <td class="text-center"><%= Record.where(rol: "EJE").count %></td>
-            <td class="text-center"><%= Record.where(rol: "OAS").count %></td>
-            <td class="text-center"><%= Record.where(rol: "SPS").count %></td>
-            <td class="text-center"><%= Record.all.count %></td>
-          </tr>
-        </tbody>
-      </table>
+        <% end %>
+        <tr>
+          <td class="text-center">Total Resultado</td>
+          <% @filter_roles.each do |fr| %>
+            <td class="text-center"><%= @table_records.where(rol: "#{fr}").count %></td>
+          <% end %>
+          <td class="text-center"><%= @table_records.all.count %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row text-center">
+    <%= form_tag(records_path, method: :get) do %>
+      <%= select_tag "roles_filter", options_from_collection_for_select(@roles, "rol", "rol"), multiple: true %>
+      <%= select_tag "vps_filter", options_from_collection_for_select(@vps,  "vp", "vp"), multiple: true %>
+      <p class="small">(Para selección múltiple mantenga presionada la tecla Ctrl)</p>
+      <%= submit_tag 'Filtrar', name: nil %>
+    <% end %>
   </div>
 </div>
+
 <%= bar_chart records_data_path(filter: @filter), library: {  title: 'Concursos CMDIC',
                                                               hAxis: {
                                                                 title: 'N° Concursos',
