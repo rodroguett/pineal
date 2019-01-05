@@ -11,7 +11,25 @@ class RecordsController < ApplicationController
     else
       Record.all
     end
+
+    # todos los existentes para mostrarlos para los filtros
     @statuses = Record.pluck(:status).uniq
+    @roles = Record.select(:rol).distinct
+    @vps = Record.select(:vp).distinct
+
+    @filter_roles =
+      if params[:roles_filter].blank? # en este caso van todos los roles
+        @roles.pluck(:rol)
+      else
+        params[:roles_filter]
+      end
+    @filter_vps =
+      if params[:vps_filter].blank? # en este caso van todos los vps
+        @vps.pluck(:vp)
+      else
+        params[:vps_filter]
+      end
+    @table_records = Record.where("rol in (?) AND vp in (?)", @filter_roles, @filter_vps)
   end
 
   def download
