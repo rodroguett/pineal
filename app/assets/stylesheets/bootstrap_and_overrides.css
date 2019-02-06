@@ -11,7 +11,7 @@
   padding: 0px;
   padding-left: auto;
   min-height: 120px !important;
-  background-image: url("test2.png");
+  background-image: image-url("test2.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
